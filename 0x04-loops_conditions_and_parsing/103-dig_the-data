@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Bash script to group visitors by IP and HTTP status code from Apache log file using awk
+
+# Specify the path to the Apache log file
+log_file="apache-access.log"
+
+# Using awk to group visitors by IP and HTTP status code, count occurrences, and sort the data
+awk '{count[$1" "$9]++} END {for (key in count) print count[key], key}' "$log_file" | sort -nr
