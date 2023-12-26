@@ -1,20 +1,4 @@
 #!/usr/bin/env bash
-# Bash script to start and stop the "To infinity and beyond" process
-
-# Start the process in the background
-./4-to_infinity_and_beyond &
-
-# Capture the PID of the background process
-bg_process_pid=$!
-
-# Wait for a moment
-sleep 2
-
-# Stop the process using kill
-kill "$bg_process_pid"
-
-# Wait for the process to be terminated
-wait "$bg_process_pid"
-
-echo "Terminated"
-
+# Kill a process
+killing_pid=$(pgrep -a "bash" | grep "4-to_infinity" | cut -d' ' -f1)
+kill "$killing_pid"

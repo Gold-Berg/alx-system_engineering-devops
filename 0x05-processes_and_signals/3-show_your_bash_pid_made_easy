@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 # Bash script to display PID and process name of processes containing the word "bash"
-pgrep -f bash | while read -r pid; do
-    process_name=$(ps -p "$pid" -o comm=)
-    echo "PID: $pid, Process Name: $process_name" | awk '{printf("%-27s\n", $0)}'
-done
+pgrep -l "bash"
