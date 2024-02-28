@@ -1,28 +1,12 @@
 #!/usr/bin/env bash
-# Script that installs Nginx server, redirects /redirect_me and customizes 404 not found
-apt-get -y update
-apt-get -y update
-apt-get install -y nginx
+# Configure a new Nginx server so that /redirect_me is redirecting to another page.
 
-echo "Ceci n'est pas une page." > /var/www/html/404.html
-
-cat << EOF > /etc/nginx/sites-available/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-
-    error_page 404 /404.html;
-    location = /404.html {
-        internal;
-    }
-}
-EOF
-
-service nginx restart
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo service nginx start
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+new_string="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}"
+sudo sed -i "20i $new_string" /etc/nginx/sites-available/default
+sudo service nginx restart
+sudo service nginx reload
