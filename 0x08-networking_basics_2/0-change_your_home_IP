@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+#define the new IP addresses
+LOCALHOST_IP="127.0.0.2"
+FACEBOOK_IP="8.8.8.8"
+
+#Update /etc/hosts file to change IP addresses
+sudo sed -i "s/127.0.0.1.*localhost/127.0.0.1\tlocalhost\n${LOCALHOST_IP}\t;ocalhost/" /etc/hosts
+sudo -i "s/.*facebook.com/${FACEBOOK_IP}\tfacebook.com/" /etc/host
+
+# Flush DNS cache to apply changes immediately
+sudo systemd-resolve --flush-caches
