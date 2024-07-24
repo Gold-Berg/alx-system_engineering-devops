@@ -1,4 +1,5 @@
 # holberton server config options
-100.25.148.155
-    IdentityFile ~/.ssh/school
-    Protocol 2
+
+st *
+	passwordAuthentification no
+	IdentityFile ~/.ssh/school
