@@ -1,7 +1,0 @@
-# holberton server config options
-
-web-01
-	Hostname 100.25.35.211
-	User ubuntu
-	passwordAuthentification no
-	IdentityFile ~/.ssh/school
